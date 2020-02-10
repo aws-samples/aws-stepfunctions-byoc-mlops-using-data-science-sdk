@@ -29,10 +29,13 @@ SageMaker Containers gives you tools to create SageMaker-compatible Docker conta
 Currently, this library is used by the following containers: TensorFlow Script Mode, MXNet, PyTorch, Chainer, and Scikit-learn.
 
 # Step 2: Clone this repo to your home directory
+```bash
+git clone https://github.com/aws-samples/aws-stepfunctions-byoc-mlops-using-data-science-sdk.git
+```
 
-# Step 3: Upload your code
+# Step 3: Compress your code into a deployment package
 
-Next in a Terminal, navigate to the folder containing the git repo you just cloned.
+Next, in a Terminal, navigate to the folder containing the git repo you just cloned.
 
 Run the following command:
 
@@ -40,7 +43,7 @@ Run the following command:
 zip -r lambda.zip Dockerfile buildspec.yml lambda_function.py mask_r_cnn/*
 ```
 
-# Step 3: Modify the Lambda function
+# Step 3: Upload deployment package and Modify the Lambda function
 
 Next, navigate to the Lambda function you just created, and in the Function Code section, for Code entry type, select: **upload a .zip file**.
 
