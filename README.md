@@ -10,8 +10,7 @@ into their workflow.
 The overall flow of this workshop is as follows:
 
 1/ Upload your code to the Lambda console <br/>
-2/ Use StepFunctions pipeline to kick off the Lambda function which in-turn will launch a CodeBuild job to build your Mask R-CNN
-Docker container with your custom code <br/>
+2/ Use StepFunctions pipeline to kick off the Lambda function which in-turn will launch a CodeBuild job to build your Mask R-CNN Docker container with your custom code <br/>
 3/ CodeBuild will upload the Docker container to Amazon ECR for your use.<br/>
 4/ The StepFunctions Training pipeline will pick up this Docker container, train the model and deploy it. <br/>
 
@@ -26,13 +25,12 @@ to build a Sagemaker specific container.
 
 Launch CloudFormation stack in us-east-1: [![button](media/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/template?stackName=lambda-docker-build&templateURL=https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build.yaml)
 
-SageMaker Containers gives you tools to create SageMaker-compatible Docker containers, 
-and has additional tools for letting you create Frameworks (SageMaker-compatible Docker containers that can run arbitrary Python or shell scripts). 
+SageMaker Containers gives you tools to create SageMaker-compatible Docker containers, and has additional tools for letting you create Frameworks (SageMaker-compatible Docker containers that can run arbitrary Python or shell scripts). 
 Currently, this library is used by the following containers: TensorFlow Script Mode, MXNet, PyTorch, Chainer, and Scikit-learn.
 
 # Step 2: Clone this repo to your home directory
 
-#Step 3: Upload your code
+# Step 3: Upload your code
 
 Next in a Terminal, navigate to the folder containing the git repo you just cloned.
 
