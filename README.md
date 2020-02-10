@@ -82,4 +82,8 @@ to this Github repo: https://github.com/awslabs/amazon-sagemaker-examples/tree/m
 
 This repo demonstrates how to package your training and inference code, and Dockerfile in a format that is compatible with SageMaker. For the Mask R-CNN workshop here, this has already been done for you. 
 
-Enjoy building your own CI/CD pipelines with Amazon SageMaker, AWS Lambda, AWS StepFunctions
+Enjoy building your own CI/CD pipelines with Amazon SageMaker, AWS Lambda, AWS StepFunctions.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
