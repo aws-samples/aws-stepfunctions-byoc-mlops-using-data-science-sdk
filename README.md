@@ -55,7 +55,9 @@ Next, scroll down to Environment Variables and replace the following Variables w
 
 1. IMAGE_REPO <br/>
 2. IMAGE_TAG <br/>
-3. trainscripts <br/>
+3. Replace "train" with trainscripts <br/>
+4. Replace the value for trainscripts with "mask_r_cnn" as shown in the Figure below <br/>
+4. dockerfilename: replace value with "Dockerfile" as shown in the figure. 
 
 ![](media/lambdaenv.png)
 
