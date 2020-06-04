@@ -1,5 +1,6 @@
 import copy
 import os
+from PIL import Image
 
 import torch
 import torch.utils.data

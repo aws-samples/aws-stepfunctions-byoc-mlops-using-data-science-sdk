@@ -5,21 +5,29 @@ from __future__ import print_function
 
 import os
 import json
+import pickle
+import io 
 import sys
 import signal
 import traceback
 from helper import *
 import flask, pickle
-import io
-from PIL import Image
-import numpy as np
 
+import pandas as pd
 NUM_CLASSES=2
 prefix = '/opt/ml/'
 model_path = os.path.join(prefix, 'model')#mask_rcnn_model_saved
 
+# Global_model = get_model_instance_segmentation(NUM_CLASSES)
+# device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+# Global_model.load_state_dict(torch.load(os.path.join(model_path,'mask_rcnn_model_saved'), \
+#                                                              map_location=device))
+
 class ScoringService(object):
-    model = None                # Where we keep the model when it's loaded
+    
+    
+    # Where we keep the model when it's loaded
+    model = None#Global_model
 
 
     @classmethod
@@ -64,55 +72,37 @@ def ping():
 
 @app.route('/invocations', methods=['POST'])
 def transformation():
-    stream = io.BytesIO(flask.request.get_data()) #.read()) #decode('utf-8')) #data.read())
-    img = Image.open(stream)
-    img = np.asarray(img)
+    """Do an inference on a single batch of data. In this sample server, we take data as CSV, convert
+    it to a pandas data frame for internal use and then convert the predictions back to CSV (which really
+    just means one prediction per line, since there's a single column.
+    """
+    data = None
 
-    print('Invoked with shape: {}'.format(img.shape))
+    # Convert from CSV to pandas
+    if True:#flask.request.content_type == 'image/png':
 
-#    # Do the prediction
-#    img = np.array(img)
-#    print('  now type {}, shape: {}'.format(type(img), img.shape))
-#    img = img.astype(np.uint8)
-#    print('  now type {}, shape: {}'.format(type(img), img.shape))
-
-    trans = torchvision.transforms.ToTensor()
-    t1 = trans(img)
-    print('  after tv.ToTensor, type {}, shape: {}'.format(type(img), t1.shape))
-
-    predictions = ScoringService.predict(t1)
-    mask_response = predictions[0]['masks'].tolist()
-    result = json.dumps(mask_response)
-    
-    print('After prediction, {} masks, JSON result size: {}'.format(len(mask_response), len(result)))
-
-    return flask.Response(response=result, status=200, mimetype='text/csv')
-
-def transformation_as_json():
-    if True: #flask.request.content_type == 'image/png' or flask.request.content_type == 'image/jpeg':
         img = json.loads(flask.request.data.decode('utf-8'))
         img = np.asarray(img)
-    else:
-        return flask.Response(response='This predictor only supports png or jpeg data', status=415, mimetype='text/plain')
 
-    print('Invoked with np array shape: {}'.format(img.shape))
+    else:
+        return flask.Response(response='This predictor only supports png data', status=415, mimetype='text/plain')
+
+    print('Invoked with {} records'.format(img.shape))
 
     # Do the prediction
-    img = np.array(img)
-    print('  now type {}, shape: {}'.format(type(img), img.shape))
-    img = img.astype(np.uint8)
-    print('  now type {}, shape: {}'.format(type(img), img.shape))
-
     trans = torchvision.transforms.ToTensor()
+    img = np.array(img)
+    img = img.astype(np.uint8)
     t1 = trans(img)
-    print('  after tv.ToTensor, type {}, shape: {}'.format(type(img), t1.shape))
+    
+    
+    
 
     #device = torch.device("cuda") 
     #t1 = t1.to(device)
     predictions = ScoringService.predict(t1)
     mask_response = predictions[0]['masks'].tolist()
     result = json.dumps(mask_response)
-    
-    print('After prediction, result size: {}'.format(len(result)))
+
 
     return flask.Response(response=result, status=200, mimetype='text/csv')
