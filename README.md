@@ -45,7 +45,7 @@ Run the following command:
 zip -r lambda.zip Dockerfile buildspec.yml lambda_function.py mask_r_cnn/*
 ```
 
-# Step 3: Upload deployment package and Modify the Lambda function
+# Step 4: Upload deployment package and Modify the Lambda function
 
 Next, navigate to the Lambda function you just created, and in the Function Code section, for Code entry type, select: **upload a .zip file**.
 
@@ -63,7 +63,7 @@ Next, scroll down to Environment Variables and replace the following Variables w
 
 Next, scroll down to Basic Settings and update the Lambda Timeout to 15 minutes and the memory to 1024MB. While this is overkill, this will avoid any OOM or timeout issues for larger code files. 
 
-# Step 4: Run the Jupyter Notebook.
+# Step 5: Run the Jupyter Notebook.
 
 Create a new SageMaker notebook and upload the notebook *StepFunctions_BYOC_Workflow.ipynb*. 
 
