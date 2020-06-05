@@ -14,7 +14,7 @@ The overall flow of this workshop is as follows:
 3/ CodeBuild will upload the Docker container to Amazon ECR for your use.<br/>
 4/ The StepFunctions Training pipeline will pick up this Docker container, train the model and deploy it. <br/>
 
-**Caution** Note that in order to train a Mask R-CNN model, we use an ml.p3.2xlarge instance with a training time of roughly 320 seconds. 
+**Note** that in order to train a Mask R-CNN model, we use an ml.p3.2xlarge instance with a training time of roughly 320 seconds. 
 This will incur a cost of $0.38 for training the model.
 
 
@@ -65,15 +65,9 @@ Next, scroll down to Basic Settings and update the Lambda Timeout to 15 minutes 
 
 # Step 5: Run the Jupyter Notebook.
 
-Create a new SageMaker notebook and upload the notebook *StepFunctions_BYOC_Workflow.ipynb*. 
+Create a new SageMaker notebook instance and clone this repo. 
 
-To Download the dataset, go to the link here: https://www.cis.upenn.edu/~jshi/ped_html/.
-
-Unzip the dataset files and upload the data folder to your SageMaker notebook environment. 
-
-In order to run the workshop, you will need to ensure that Amazon SageMaker can call AWS StepFunctions, and that StepFunctions can call Model Training, Creation, and Deployment on behalf of SageMaker. To ensure the correct IAM Persmissions, refer to the **Setup** section of the following notebook: https://github.com/awslabs/amazon-sagemaker-examples/blob/master/step-functions-data-science-sdk/machine_learning_workflow_abalone/machine_learning_workflow_abalone.ipynb.
-
-Once the appropriate setup is complete, run through the *StepFunctions_BYOC_Workflow.ipynb*. Open up the StepFunctions Console to watch the individual steps in the graph getting executed.
+Run through the *StepFunctions_BYOC_Workflow.ipynb*. Open up the StepFunctions Console to watch the individual steps in the graph getting executed.
 
 ![](media/SFgraph.png)
 
