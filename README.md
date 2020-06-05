@@ -28,42 +28,13 @@ Launch CloudFormation stack in us-east-1: [![button](media/cloudformation-launch
 If you would like to edit this ^ cloud formation template before deploying, you may download it from [here](https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build-maskrcnn.yaml)
 
 SageMaker Containers gives you tools to create SageMaker-compatible Docker containers, and has additional tools for letting you create Frameworks (SageMaker-compatible Docker containers that can run arbitrary Python or shell scripts). 
-Currently, this library is used by the following containers: TensorFlow Script Mode, MXNet, PyTorch, Chainer, and Scikit-learn.
 
-# Step 2: Clone this repo to your home directory
+# Step 2: Clone this repo to your SageMaker Notebook instance
 ```bash
 git clone https://github.com/aws-samples/aws-stepfunctions-byoc-mlops-using-data-science-sdk.git
 ```
 
-# Step 3: Compress your code into a deployment package
-
-Next, in a Terminal, navigate to the folder containing the git repo you just cloned.
-
-Run the following command:
-
-```bash
-zip -r lambda.zip Dockerfile buildspec.yml lambda_function.py mask_r_cnn/*
-```
-
-# Step 4: Upload deployment package and Modify the Lambda function
-
-Next, navigate to the Lambda function you just created, and in the Function Code section, for Code entry type, select: **upload a .zip file**.
-
-Upload your file "lambda.zip" to this code and click Save.
-
-Next, scroll down to Environment Variables and replace the following Variables with the ones shown in the diagram below.
-
-1. IMAGE_REPO <br/>
-2. IMAGE_TAG <br/>
-3. Replace "train" with trainscripts <br/>
-4. Replace the value for trainscripts with "mask_r_cnn" as shown in the Figure below <br/>
-4. dockerfilename: replace value with "Dockerfile" as shown in the figure. 
-
-![](media/lambdaenv.png)
-
-Next, scroll down to Basic Settings and update the Lambda Timeout to 15 minutes and the memory to 1024MB. While this is overkill, this will avoid any OOM or timeout issues for larger code files. 
-
-# Step 5: Run the Jupyter Notebook.
+# Step 3: Run the Jupyter Notebook.
 
 Create a new SageMaker notebook instance and clone this repo. 
 
