@@ -23,9 +23,9 @@ This will incur a cost of $0.38 for training the model.
 This Cloudformation template creates a Lambda function with a sample Dockerfile that launches a Codebuild job
 to build a Sagemaker specific container. 
 
-Launch CloudFormation stack in us-east-1: [![button](media/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/template?stackName=lambda-docker-build&templateURL=https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build.yaml)
+Launch CloudFormation stack in us-east-1: [![button](media/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/template?stackName=lambda-docker-build-maskrcnn&templateURL=https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build-maskrcnn.yaml)
 
-If you would like to edit this ^ cloud formation template before deploying, you may download it from [here](https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build.yaml)
+If you would like to edit this ^ cloud formation template before deploying, you may download it from [here](https://lambda-ml-layers.s3.amazonaws.com/lambda-sm-build-maskrcnn.yaml)
 
 SageMaker Containers gives you tools to create SageMaker-compatible Docker containers, and has additional tools for letting you create Frameworks (SageMaker-compatible Docker containers that can run arbitrary Python or shell scripts). 
 Currently, this library is used by the following containers: TensorFlow Script Mode, MXNet, PyTorch, Chainer, and Scikit-learn.
