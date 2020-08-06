@@ -9,7 +9,7 @@ into their workflow.
 
 The overall flow of this workshop is as follows:
 
-1/ Upload your code to the Lambda console <br/>
+1/ Upload your code to the Lambda console. This is the mask_r_cnn folder, Dockerfile, buildspec.yml and lambda_function.py <br/>
 2/ Use StepFunctions pipeline to kick off the Lambda function which in-turn will launch a CodeBuild job to build your Mask R-CNN Docker container with your custom code <br/>
 3/ CodeBuild will upload the Docker container to Amazon ECR for your use.<br/>
 4/ The StepFunctions Training pipeline will pick up this Docker container, train the model and deploy it. <br/>
